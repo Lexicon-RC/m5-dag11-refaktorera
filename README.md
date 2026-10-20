@@ -8,7 +8,7 @@ Du lär dig **refaktorera**: bygga om kod så att den blir lättare att läsa, �
 
 ## Bakgrund
 
-Kod skrivs en gång men läses hundra gånger. Att få något att fungera är första halvan av jobbet, att göra det begripligt är andra. Refaktorering är riskfyllt utan tester: du vet inte om du ändrat beteendet. Därför börjar du med att köra testerna (de är gröna), och du kör dem efter *varje* litet steg. Går något rött vet du exakt vad som orsakade det. Du får använda AI för förslag, men ombyggnaden gör du i små steg själv, och du ska kunna förklara varje ändring.
+Kod skrivs en gång men läses hundra gånger. Att få något att fungera är första halvan av jobbet, att göra det begripligt är andra. Refaktorering är riskfyllt utan tester: du vet inte om du ändrat beteendet. Därför börjar du med att köra testerna (de är gröna), och du kör dem efter *varje* litet steg. Går något rött vet du exakt vad som orsakade det. Ombyggnaden gör du i små steg, och du ska kunna förklara varje ändring.
 
 ## Så arbetar du (samma som alltid)
 
@@ -16,8 +16,7 @@ Kod skrivs en gång men läses hundra gånger. Att få något att fungera är f�
 2. **Klona din fork:** *Code → HTTPS → kopiera adressen*. I terminalen (Ctrl+ö i VS Code): `git clone <adressen>`. Öppna den nya mappen i VS Code och starta *Live Server*.
 3. **Gör uppgiften.** Spara och kontrollera i webbläsaren och Console (F12) efter varje steg. Gör en commit efter varje avslutat steg: `git add .` och `git commit -m "Beskriv vad du gjorde"`.
 4. **Skicka upp** när du är klar: `git push`.
-5. **Fortsätt i `mitt-projekt`** med dagens projektsteg (längre ned).
-6. **Lämna in i Microsoft Forms.**
+5. **Lämna in i Microsoft Forms.**
 
 Fastnar du: skriv ner exakt var och vad du försökt (och vilket felmeddelande du fick), och ta det först i nästa handledda pass.
 
@@ -35,7 +34,7 @@ Forka repot, kör `git clone`, öppna i VS Code, starta Live Server på `tests.h
 
 ### Steg 3. Planera modulerna
 
-Skriv i avsnitt 2 vilka moduler du vill ha och vad var och en ansvarar för. Tänk i ansvar, inte i filer: vad hör ihop? Exempel på frågor: var finns momsen, var finns rabatten, var finns formateringen? Vill du ha AI:s förslag: be om förslag, inte kod (se AI-spåret).
+Skriv i avsnitt 2 vilka moduler du vill ha och vad var och en ansvarar för. Tänk i ansvar, inte i filer: vad hör ihop? Exempel på frågor: var finns momsen, var finns rabatten, var finns formateringen?
 
 ### Steg 4. Städa först, flytta sedan
 
@@ -61,38 +60,6 @@ Fyll i avsnitt 5: längsta funktionen före och efter, antal magiska tal, och at
 
 Kvittonumret är global state. Hur skulle du göra `skapaKvitto` ren genom att skicka in numret? Vilka tester måste då ändras, och är det okej? Diskutera i reflektionen.
 
-## AI-spåret (nivå 3: Styr och ansvara)
-
-**Refaktorera med skyddsnät** (cirka 25 minuter, efter att du gjort din egen lösning)
-
-Fri användning, full loggning. Du granskar varje rad AI föreslår och bär ansvaret för allt du lämnar in. AI är bra på att föreslå ombyggnad. Utan tester vet du inte om beteendet ändrades.
-
-Regler: egen lösning först, du ska kunna förklara varje rad, och du loggar i `docs/ai-logg.md` i `mitt-projekt` under rubriken *Modul 5*. Reglerna står i `AI-REGLER-MODUL5.md`.
-
-1. Kör testerna. Alla ska vara gröna innan du börjar.
-2. Be AI föreslå hur koden kan delas upp i moduler, utan att skriva koden.
-3. Gör ombyggnaden själv, ett steg i taget, och kör testerna efter varje steg.
-4. Prova att låta AI skriva en av modulerna. Gå testerna fortfarande gröna?
-5. Logga vilka förslag du valde bort och varför.
-
-Prompt att utgå från:
-
-```
-Här är min kod:
-[klistra in koden]
-Föreslå hur den kan delas i moduler (data, api, ui).
-Skriv inte koden, bara förslag med skäl.
-Vad bör jag undvika att ändra?
-```
-
-**Kontrollera med:**
-
-- Testerna före och efter.
-- git diff visar vad som egentligen ändrats.
-- Console ska vara utan fel.
-
-**I ditt projekt:** Dela upp ditt projekts JavaScript i moduler. Kör dina tester efter varje steg och committa efter varje steg.
-
 ## Kontrollista: så vet du att du är klar
 
 - [ ] Alla tester i `tests.js` är gröna, och `tests.js` är oförändrad (`git diff tests.js` är tom).
@@ -102,7 +69,6 @@ Vad bör jag undvika att ändra?
 - [ ] `docs/refaktorering.md` är ifylld: minst åtta kodlukter, plan, steg och mätning.
 - [ ] Du har minst ett test per ny modul i `tests-moduler.js`.
 - [ ] Du har gjort minst åtta commits, och testerna var gröna vid varje.
-- [ ] Du har gjort AI-uppgiften och skrivit en post i `docs/ai-logg.md` i `mitt-projekt`.
 
 ## Tips om du fastnar
 
@@ -110,21 +76,8 @@ Vad bör jag undvika att ändra?
 - Går testerna röda: ångra senaste ändringen (`git restore filen`) och gör ett mindre steg. Gissa inte dig fram.
 - Räkna inte om matematiken "snyggare". Flyttal är känsliga för ordningen: `a * b / c` och `a * (b / c)` kan ge olika ören. Behåll räkneordningen.
 - Rör inte beteendet, inte ens om du tror att det är en bugg. Skriv ner det istället som ett fynd. Refaktorering ändrar struktur, inte beteende.
-- Om AI skriver en modul åt dig: kör testerna direkt. Gröna är inte samma som rätt: läs koden och förklara den.
+- Gröna tester är inte samma som rätt kod: läs den nya modulen och förklara den högt.
 - Svårt att välja modulnamn? Fundera på vad som skulle ändras om momsen ändrades. Det som ändras ihop hör ihop.
-
-## Ditt projekt: Refaktorera din egen kod
-
-Efter övningen jobbar du vidare i `mitt-projekt`, samma repo som i modul 4. Övningen här är träningsbanan, projektet är det som växer. Dagens steg står också i `PROJEKTSTEG-MODUL5.md` (som du kopierar till ditt projekt dag 1), under **Dag 11**.
-
-1. Kör alla tester i ditt projekt. De ska vara gröna innan du börjar.
-2. Läs `js/main.js` och dina andra filer. Skriv i `docs/refaktorering.md` i projektet minst fem kodlukter du hittar i din egen kod.
-3. Dela upp den största eller rörigaste funktionen i mindre delar, eller flytta ut en modul. Kör testerna efter varje steg.
-4. Saknar koden tester? Skriv först tester som beskriver beteendet (karakteriseringstester), och bygg sedan om.
-5. Gör i en feature-gren och en pull request till din egen main.
-6. Commit och push.
-
-**Klart när:** Projektets kod är uppdelad i tydligare moduler, testerna är gröna, och `docs/refaktorering.md` beskriver fem kodlukter och vad du gjort.
 
 ## Inlämning
 
@@ -133,8 +86,7 @@ Efter övningen jobbar du vidare i `mitt-projekt`, samma repo som i modul 4. Öv
 I formuläret fyller du i:
 
 1. Länk till din fork av det här repot.
-2. Länk till ditt `mitt-projekt`.
-3. Reflektion: Vad är skillnaden mellan att refaktorera och att skriva om? Vad skulle ha hänt om du ombyggt hela filen utan tester? Vilket fynd i koden (ett beteende du tyckte var konstigt) skulle du ta upp med ett team?
+2. Reflektion: Vad är skillnaden mellan att refaktorera och att skriva om? Vad skulle ha hänt om du ombyggt hela filen utan tester? Vilket fynd i koden (ett beteende du tyckte var konstigt) skulle du ta upp med ett team?
 
 ## Vill du mer? (frivilligt)
 
