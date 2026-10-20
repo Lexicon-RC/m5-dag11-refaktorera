@@ -14,8 +14,8 @@ Vilka moduler vill jag ha, och vad ansvarar varje för? (Plan FÖRE du kodar.)
 |---|---|
 | | |
 
-## 3. Mitt AI-förslag (om du använde AI)
-Vad föreslog AI? Vilka förslag valde jag bort, och varför?
+## 3. Det jag valde bort
+Vilka förbättringar övervägde jag men valde bort, och varför?
 
 
 ## 4. Stegen jag tog
