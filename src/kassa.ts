@@ -1,19 +1,21 @@
 // Kafé Kardemummas kassa. Det fungerar, men koden är en röra.
-// Ditt jobb idag: göra den ren UTAN att ändra vad den gör. Testerna i tests.js är ditt skyddsnät.
+// Ditt jobb idag: göra den ren UTAN att ändra vad den gör. Testerna i tests.ts är ditt skyddsnät.
 // De anropar bara de tre exporterade funktionerna nedan, så allt inuti får du bygga om.
 // OBS: momssatserna och koderna är påhittade för övningen.
 
+import type { KassaRad, Order, Sokbar } from "./typer";
+
 var nr = 0;
 
-export function nollstallKvittonummer() {
+export function nollstallKvittonummer(): void {
   nr = 0;
 }
 
-export function beraknaOrder(r, k) {
+export function beraknaOrder(r: KassaRad[], k: string): Order {
   var d = 0;
   var m = 0;
   var rab = 0;
-  var rader2 = [];
+  var rader2: { namn: string; summa: number }[] = [];
   for (var i = 0; i < r.length; i++) {
     var x = r[i];
     var s = x.pris * x.antal;
@@ -65,7 +67,7 @@ export function beraknaOrder(r, k) {
   };
 }
 
-export function skapaKvitto(r, k) {
+export function skapaKvitto(r: KassaRad[], k: string): string {
   nr = nr + 1;
   var o = beraknaOrder(r, k);
   var s = "KAFÉ KARDEMUMMA\n";
@@ -85,8 +87,8 @@ export function skapaKvitto(r, k) {
   return s;
 }
 
-export function sokRatter(m, q, f) {
-  var res = [];
+export function sokRatter<T extends Sokbar>(m: T[], q: string, f?: string | null): T[] {
+  var res: T[] = [];
   var qq = q.trim().toLowerCase();
   for (var i = 0; i < m.length; i++) {
     var ok = true;

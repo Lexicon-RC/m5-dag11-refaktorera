@@ -1,13 +1,14 @@
 // Skyddsnätet för dag 11. Ändra inte den här filen.
 // Testerna anropar bara beraknaOrder, skapaKvitto, sokRatter och nollstallKvittonummer.
 // Så länge de är gröna har du inte ändrat vad koden gör.
-import { test, assertEqual, assertThrows, visaResultat } from "./testlib.js";
-import { beraknaOrder, skapaKvitto, sokRatter, nollstallKvittonummer } from "./kassa.js";
+import type { KassaRad } from "./typer";
+import { test, assertEqual, assertThrows, visaResultat } from "./testlib";
+import { beraknaOrder, skapaKvitto, sokRatter, nollstallKvittonummer } from "./kassa";
 
-const bulle = { namn: "Kardemummabulle", pris: 35, antal: 2, kategori: "bakverk" };
-const kaffe = { namn: "Bryggkaffe", pris: 32, antal: 1, kategori: "dryck" };
-const macka = { namn: "Ostmacka", pris: 59, antal: 1, kategori: "lunch" };
-const kort = { namn: "Presentkort", pris: 100, antal: 1, kategori: "present" };
+const bulle: KassaRad = { namn: "Kardemummabulle", pris: 35, antal: 2, kategori: "bakverk" };
+const kaffe: KassaRad = { namn: "Bryggkaffe", pris: 32, antal: 1, kategori: "dryck" };
+const macka: KassaRad = { namn: "Ostmacka", pris: 59, antal: 1, kategori: "lunch" };
+const kort: KassaRad = { namn: "Presentkort", pris: 100, antal: 1, kategori: "present" };
 
 // ---- beraknaOrder: summor ----
 test("beraknaOrder: tom order ger nollor", () => {
@@ -131,7 +132,7 @@ const meny = [
   { id: 5, namn: "Latte", kategori: "dryck" },
   { id: 6, namn: "Åland-kaka", kategori: "bakverk" },
 ];
-const namnen = (lista) => lista.map((r) => r.namn);
+const namnen = (lista: { namn: string }[]): string[] => lista.map((r) => r.namn);
 test("sokRatter: tom sökning och inget filter ger allt, sorterat på svenska", () => {
   assertEqual(namnen(sokRatter(meny, "", "alla")), ["Bryggkaffe", "Kardemummabulle", "Latte", "Ostmacka", "Åland-kaka", "Äppelpaj"]);
 });
